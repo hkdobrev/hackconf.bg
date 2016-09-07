@@ -1,21 +1,36 @@
-/* Project specific Javascript goes here. */
+$(document).ready(function () {
+  $('.about').attr('id', 'about');
+  $('.speakers').attr('id', 'speakers');
+  $('.sponsors').attr('id', 'sponsors');
+  $('.past').attr('id', 'past');
+  $('.tickets').attr('id', 'tickets');
+  $('.section-header').attr('id', 'go-top');
 
-/*
-Formatting hack to get around crispy-forms unfortunate hardcoding
-in helpers.FormHelper:
+  if ($(document).scrollTop() == 0) {
+    $('.go-top').fadeOut(200);
+  }
+});
 
-    if template_pack == 'bootstrap4':
-        grid_colum_matcher = re.compile('\w*col-(xs|sm|md|lg|xl)-\d+\w*')
-        using_grid_layout = (grid_colum_matcher.match(self.label_class) or
-                             grid_colum_matcher.match(self.field_class))
-        if using_grid_layout:
-            items['using_grid_layout'] = True
+$('.go-top').click(function () {
+  $('html, body').animate({
+    scrollTop: 0
+  }, 500);
+});
+$('.menu-item').click(function (event) {
+  event.preventDefault();
 
-Issues with the above approach:
+  $('body, html').animate({
+    scrollTop: $($.attr(this, 'href')).offset().top
+  }, 500);
+});
 
-1. Fragile: Assumes Bootstrap 4's API doesn't change (it does)
-2. Unforgiving: Doesn't allow for any variation in template design
-3. Really Unforgiving: No way to override this behavior
-4. Undocumented: No mention in the documentation, or it's too hard for me to find
-*/
-$('.form-group').removeClass('row');
+$(window).scroll(function (e) {
+  var arrow = $('.go-top');
+  var duration = 200;
+  if ($(document).scrollTop() > 0) {
+    arrow.fadeIn(duration)
+  } else {
+    arrow.fadeOut(duration)
+  }
+
+});
