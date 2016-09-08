@@ -59,7 +59,7 @@ namespace :deploy do
 
   task :restart do
     on roles(:all) do |h|
-      execute "sudo restart hackconf"
+      execute "sudo restart hackconf || sudo start hackconf"
     end
   end
 
