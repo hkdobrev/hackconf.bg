@@ -1,6 +1,8 @@
 $(document).ready(function () {
   $('.about').attr('id', 'about');
-  $('.speakers').attr('id', 'speakers');
+  $('.call-for-speakers').attr('id', 'call-for-speakers');
+  $('.program').attr('id', 'program');
+  $('.lecturers').attr('id', 'lecturers');
   $('.sponsors').attr('id', 'sponsors');
   $('.past').attr('id', 'past');
   $('.tickets').attr('id', 'tickets');

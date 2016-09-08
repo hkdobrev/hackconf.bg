@@ -54,16 +54,16 @@
           <div class="medium-6 medium-centered columns menu-centered">
             <ul class="menu menu-centered">
               <li>
-                <a href="https://twitter.com/HackBulgaria"><i class="icon icon-twitter"></i></a>
+                <a href="https://twitter.com/HackBulgaria" target="_blank"><i class="icon icon-twitter"></i></a>
               </li>
               <li>
-                <a href="https://www.facebook.com/HackConference"><i class="icon icon-fb"></i></a>
+                <a href="https://www.facebook.com/HackConference" target="_blank"><i class="icon icon-fb"></i></a>
               </li>
               <li>
-                <a href="https://github.com/hackbulgaria/"><i class="icon icon-github"></i></a>
+                <a href="https://github.com/hackbulgaria/" target="_blank"><i class="icon icon-github"></i></a>
               </li>
               <li>
-                <a href="https://www.youtube.com/user/HackBulgaria/hackconf2015"><i class="icon icon-youtube"></i></a>
+                <a href="https://www.youtube.com/user/HackBulgaria/hackconf2015" target="_blank"><i class="icon icon-youtube"></i></a>
               </li>
             </ul>
           </div>
@@ -97,7 +97,15 @@
           <div class="top-bar" id="main-menu" data-sticky data-options="marginTop:0;" data-top-anchor="about" style="width:100%" data-sticky-on="large">
             <ul class="dropdown menu menu-main" data-dropdown-menu>
               <li><a href="#about">за конференцията</a></li>
-              <li><a href="#speakers">call for speakers</a></li>
+              {% if page.show_call_for_speakers_section %}
+              <li><a href="#call-for-speakers">call for speakers</a></li>
+              {% endif %}
+              {% if page.show_schedule %}
+              <li><a href="#program">програма</a></li>
+              {% endif %}
+              {% if page.show_speakers_section %}
+              <li><a href="#lecturers">лектори</a></li>
+              {% endif %}
               <li><a href="#sponsors">спонсори</a></li>
               <li><a href="#past">hack conf 2015</a></li>
               <li><a href="#tickets">билети</a></li>
@@ -131,13 +139,14 @@
         </div>
       </article>
     </section>
-    <section id="speakers" class="section section-call-speakers">
+    {% if page.show_call_for_speakers_section %}
+    <section id="call-for-speakers" class="section section-call-speakers">
       <article class="container">
         <div class="row">
           <div class="medium-9 medium-centered columns">
-            <h3 class="title">{{ page.speakers_title }}</h3>
+            <h3 class="title">{{ page.call_for_speakers_title }}</h3>
             <div>
-              <a class="button button-to-black" href="{{ page.call_for_speakers_form_url }}">Apply Now!</a>
+              <a class="button button-to-black" href="{{ page.call_for_speakers_form_url }}" target="_blank">Apply Now!</a>
             </div>
             <div class="row">
               <div class="small-10 medium-7 large-6 columns">
@@ -150,7 +159,161 @@
         </div>
       </article>
     </section>
-    <section id="sponsors" class="section">
+    {% endif %}
+    {% if page.show_schedule %}
+    <section id="program" class="section program">
+      <article class="container container-content">
+        <div class="row">
+          <div class="medium-12 medium-centered large-11 large-centered columns">
+            <h2 class="text-center">Програма</h2>
+            <div class="row program">
+              <div class="small-12 large-4 columns">
+                <div class="table-program yellow">
+                  <div class="table-header">
+                    <div class="row align-middle">
+                      <div class="medium-7 columns">
+                        <span class="heading">DAY 1</span>
+                      </div>
+                      <div class="medium-5 columns">
+                        <span class="date">15/10/2016</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% for relation in page.schedule_day_one.all %}
+                  <div class="table-row">
+                    <div class="row">
+                      <div class="medium-9 columns">
+                        <span class="event">{{relation.lecture.topic}}</span>
+                        <span class="name">{{relation.lecture.lector}}</span>
+                      </div>
+                      <div class="medium-3 columns">
+                        <span class="time">{{relation.lecture.start_time|time:"H:i"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="small-12 large-4 columns">
+                <div class="table-program orange">
+                  <div class="table-header">
+                    <div class="row align-middle">
+                      <div class="medium-7 columns">
+                        <span class="heading">DAY 2</span>
+                      </div>
+                      <div class="medium-5 columns">
+                        <span class="date">16/10/2016</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% for relation in page.schedule_day_two.all %}
+                  <div class="table-row">
+                    <div class="row">
+                      <div class="medium-9 columns">
+                        <span class="event">{{relation.lecture.topic}}</span>
+                        <span class="name">{{relation.lecture.lector}}</span>
+                      </div>
+                      <div class="medium-3 columns">
+                        <span class="time">{{relation.lecture.start_time|time:"H:i"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+              <div class="small-12 large-4 columns">
+                <div class="table-program green">
+                  <div class="table-header">
+                    <div class="row align-middle">
+                      <div class="medium-7 columns">
+                        <span class="heading">Workshops</span>
+                      </div>
+                      <div class="medium-5 columns">
+                        <span class="date">15/10/2016</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% for relation in page.workshops_day_one.all %}
+                  <div class="table-row">
+                    <div class="row">
+                      <div class="medium-9 columns">
+                        <span class="event">{{relation.workshop.topic}}</span>
+                        <span class="name">{{relation.workshop.lector}}</span>
+                      </div>
+                      <div class="medium-3 columns">
+                        <span class="time">{{relation.workshop.start_time|time:"H:i"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  
+                  <div class="table-header">
+                    <div class="row align-middle">
+                      <div class="medium-7 columns">
+                        <span class="heading">Workshops</span>
+                      </div>
+                      <div class="medium-5 columns">
+                        <span class="date">16/10/2016</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% for relation in page.workshops_day_two.all %}
+                  <div class="table-row">
+                    <div class="row">
+                      <div class="medium-9 columns">
+                        <span class="event">{{relation.workshop.topic}}</span>
+                        <span class="name">{{relation.workshop.lector}}</span>
+                      </div>
+                      <div class="medium-3 columns">
+                        <span class="time">{{relation.workshop.start_time|time:"H:i"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+    {% endif %}
+
+    {% if page.show_speakers_section %}
+    <section id="lecturers" class="section lecturers divider">
+      <article class="container container-content">
+        <div class="row">
+          <div class="medium-11 medium-centered large-11 large-centered columns">
+            <h2 class="text-center">Лектори</h2>
+            <div class="lecturers-wrapper">
+              <div class="row">
+                {% for relation in page.speakers_info.all %}
+                <div class="small-6 medium-4 large-3 columns spacer">
+                  <div class="lecturer">
+                    {% image relation.speaker.picture fill-300x300 as speaker_picture %}
+                    <img src="{{speaker_picture.url}}">
+                    <div class="text-container">
+                      <h3 class="name">{{relation.speaker.name}}</h3>
+                      <p class="desk">
+                        {{relation.speaker.description}}
+                      </p>
+                      <div class="abs-container-icon">
+                        <a href="{{relation.speaker.video_url}}" target="_blank"><i class="icon icon-youtube lecturer-video"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+    {% endif %}
+
+    <section id="sponsors" class="section divider">
       <article class="container container-content">
         <div class="row">
           <div class="medium-10 medium-centered large-6 large-centered columns menu-centered">
@@ -204,13 +367,13 @@
           <div class="small-12 medium-8 medium-centered columns menu-centered">
             <div>
             {{page.sponsors_partnership_description|richtext}}
-            <a href="{{page.sponsors_partnership_document}}"><i class="icon icon-pdf pdf-download"></i></a>
+            <a href="{{page.sponsors_partnership_document}}" target="_blank"><i class="icon icon-pdf pdf-download"></i></a>
             </div>
             <h4 class="sponsors-headline">Генерални партньори</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
             {% for relation in page.general_partners.all %}
               <div class="column tcell">
-                <a href="{{relation.partner.website_url}}">
+                <a href="{{relation.partner.website_url}}" target="_blank">
                   {% image relation.partner.logo max-240x120 as partner_logo %}
                   <img src="{{partner_logo.url}}" alt="">
                 </a>
@@ -226,7 +389,7 @@
               {% for relation in page.media_partners.all %}
               <div class="column tcell">
                 <div class="p-info">
-                  <a href="{{relation.partner.website_url}}">
+                  <a href="{{relation.partner.website_url}}" target="_blank">
                     {% image relation.partner.logo max-240x120 as partner_logo %}
                     <img src="{{partner_logo.url}}" alt="">
                   </a>
@@ -242,7 +405,7 @@
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.branch_partners.all %}
               <div class="column tcell">
-                <a href="{{relation.partner.website_url}}">
+                <a href="{{relation.partner.website_url}}" target="_blank">
                   {% image relation.partner.logo max-240x120 as partner_logo %}
                   <img src="{{partner_logo.url}}" alt="">
                 </a>

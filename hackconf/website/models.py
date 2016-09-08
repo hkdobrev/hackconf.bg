@@ -37,12 +37,19 @@ class HomePage(Page):
     # TODO: add fields for this section
 
     # call for speakers section
-    speakers_title = models.CharField(
+    show_call_for_speakers_section = models.BooleanField(default=True)
+    call_for_speakers_title = models.CharField(
         max_length=255,
         blank=True,
         null=True)
     call_for_speakers_form_url = models.URLField(max_length=255, blank=True, null=True)
     call_for_speakers_description = RichTextField(blank=True, null=True)
+
+    # schedule section
+    show_schedule = models.BooleanField(default=False)
+
+    # speackers section
+    show_speakers_section = models.BooleanField(default=False)
 
     # sponsors section
     sponsors_text = RichTextField(blank=True, null=True)
@@ -90,9 +97,21 @@ class HomePage(Page):
         FieldPanel('header_text'),
         FieldPanel('video_id'),
         FieldPanel('about_text'),
-        FieldPanel('speakers_title'),
+
+        FieldPanel('show_call_for_speakers_section'),
+        FieldPanel('call_for_speakers_title'),
         FieldPanel('call_for_speakers_form_url'),
         FieldPanel('call_for_speakers_description'),
+
+        FieldPanel('show_schedule'),
+        InlinePanel('schedule_day_one', label="Day One Lectures"),
+        InlinePanel('schedule_day_two', label="Day Two Lectures"),
+        InlinePanel('workshops_day_one', label="Day One Workshops"),
+        InlinePanel('workshops_day_two', label="Day Two Workshops"),
+
+        FieldPanel('show_speakers_section'),
+        InlinePanel('speakers_info', label="Speakers Info"),
+
         FieldPanel('sponsors_text'),
         FieldPanel('attendees_text'),
         FieldPanel('streaming_text'),
@@ -114,6 +133,122 @@ class HomePage(Page):
         InlinePanel('hosting_partners', label="Hosting Partners"),
         SnippetChooserPanel('footer_powered_by')
     ]
+
+
+@register_snippet
+class Lecture(models.Model):
+    topic = models.CharField(max_length=255)
+    lector = models.CharField(max_length=255)
+    start_time = models.DateTimeField()
+
+    panels = [
+        FieldPanel('topic'),
+        FieldPanel('lector'),
+        FieldPanel('start_time')
+    ]
+
+    def __str__(self):
+        return self.topic
+
+
+@register_snippet
+class Workshop(models.Model):
+    topic = models.CharField(max_length=255)
+    lector = models.CharField(max_length=255)
+    start_time = models.DateTimeField()
+
+    panels = [
+        FieldPanel('topic'),
+        FieldPanel('lector'),
+        FieldPanel('start_time')
+    ]
+
+    def __str__(self):
+        return self.topic
+
+
+class ScheduleDayOne(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='schedule_day_one')
+    lecture = models.ForeignKey('website.Lecture', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('lecture'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.lecture.topic)
+
+
+class ScheduleDayTwo(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='schedule_day_two')
+    lecture = models.ForeignKey('website.Lecture', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('lecture'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.lecture.topic)
+
+
+class WorkshopsDayOne(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='workshops_day_one')
+    workshop = models.ForeignKey('website.Workshop', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('workshop'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.workshop.topic)
+
+
+class WorkshopsDayTwo(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='workshops_day_two')
+    workshop = models.ForeignKey('website.Workshop', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('workshop'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.workshop.topic)
+
+
+@register_snippet
+class Speaker(models.Model):
+    name = models.CharField(max_length=255)
+    video_url = models.URLField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    picture = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('video_url'),
+        FieldPanel('description'),
+        ImageChooserPanel('picture'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+
+class SpeakersInfo(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='speakers_info')
+    speaker = models.ForeignKey('website.Speaker', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('speaker'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.speaker.name)
 
 
 @register_snippet
