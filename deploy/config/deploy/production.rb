@@ -5,7 +5,7 @@
 
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
-server 'new.hackconf.bg', user: 'hack', roles: %w{db}
+server 'hackconf.bg', user: 'hack', roles: %w{db}
 
 
 
