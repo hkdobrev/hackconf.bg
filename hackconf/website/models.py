@@ -119,6 +119,9 @@ class HomePage(Page):
         FieldPanel('sponsors_partnership_description'),
         DocumentChooserPanel('sponsors_partnership_document'),
         InlinePanel('general_partners', label="General Partners"),
+        InlinePanel('platinum_partners', label="Platinum Partners"),
+        InlinePanel('gold_partners', label="Gold Partners"),
+        InlinePanel('silver_partners', label="Silver Partners"),
         InlinePanel('media_partners', label="Media Partners"),
         InlinePanel('branch_partners', label="Branch Partners"),
         InlinePanel('past_events', label="Past Events"),
@@ -275,6 +278,42 @@ class Partner(models.Model):
 
 class GeneralPartners(Orderable, models.Model):
     page = ParentalKey('website.HomePage', related_name='general_partners')
+    partner = models.ForeignKey('website.Partner', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('partner'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.partner.name)
+
+
+class PlatinumPartners(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='platinum_partners')
+    partner = models.ForeignKey('website.Partner', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('partner'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.partner.name)
+
+
+class GoldPartners(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='gold_partners')
+    partner = models.ForeignKey('website.Partner', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('partner'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.partner.name)
+
+
+class SilverPartners(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='silver_partners')
     partner = models.ForeignKey('website.Partner', related_name='+')
 
     panels = [
