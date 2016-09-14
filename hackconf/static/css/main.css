@@ -3279,3 +3279,7 @@ div.info-slots + div.info-slots::after {
     display: table-cell;
     line-height: 120px;
 }
+
+.call-for-speakers-heading {
+    color: #fecb58;
+}
