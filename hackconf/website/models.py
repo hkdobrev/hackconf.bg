@@ -122,6 +122,7 @@ class HomePage(Page):
         InlinePanel('platinum_partners', label="Platinum Partners"),
         InlinePanel('gold_partners', label="Gold Partners"),
         InlinePanel('silver_partners', label="Silver Partners"),
+        InlinePanel('other_partners', label="Other Partners"),
         InlinePanel('media_partners', label="Media Partners"),
         InlinePanel('branch_partners', label="Branch Partners"),
         InlinePanel('past_events', label="Past Events"),
@@ -314,6 +315,18 @@ class GoldPartners(Orderable, models.Model):
 
 class SilverPartners(Orderable, models.Model):
     page = ParentalKey('website.HomePage', related_name='silver_partners')
+    partner = models.ForeignKey('website.Partner', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('partner'),
+    ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.page.title, self.partner.name)
+
+
+class OtherPartners(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='other_partners')
     partner = models.ForeignKey('website.Partner', related_name='+')
 
     panels = [
