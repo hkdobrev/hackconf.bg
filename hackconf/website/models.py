@@ -69,6 +69,11 @@ class HomePage(Page):
                                       blank=True,
                                       null=True,
                                       on_delete=models.SET_NULL)
+    transport_partner = models.ForeignKey('website.Partner',
+                                      related_name='+',
+                                      blank=True,
+                                      null=True,
+                                      on_delete=models.SET_NULL)
     # past events section
 
     # tickets section
@@ -131,6 +136,7 @@ class HomePage(Page):
         InlinePanel('media_partners', label="Media Partners"),
         InlinePanel('branch_partners', label="Branch Partners"),
         SnippetChooserPanel('sweet_partner'),
+        SnippetChooserPanel('transport_partner'),
         InlinePanel('past_events', label="Past Events"),
         FieldPanel('tickets_title'),
         FieldPanel('tickets_description'),
