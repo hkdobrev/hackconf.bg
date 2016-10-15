@@ -14,7 +14,6 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
-from wagtail.wagtaildocs.models import Document
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 
 
@@ -27,6 +26,7 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    live_stream = models.CharField(max_length=255, blank=True, null=True)
     header_dates = models.CharField(max_length=255, blank=True, null=True)
     header_text = models.CharField(max_length=255, blank=True, null=True)
     # navigation section
@@ -104,6 +104,7 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('header_dates'),
         ImageChooserPanel('header_image_logo'),
+        FieldPanel('live_stream'),
         FieldPanel('header_text'),
         FieldPanel('video_id'),
         FieldPanel('about_text'),
