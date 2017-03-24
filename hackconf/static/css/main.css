@@ -2989,12 +2989,17 @@ div.info-slots + div.info-slots::after {
       padding-bottom: 3.125rem; } }
 
 .footer {
-  height: 10.625rem;
-  padding-top: 4.375rem;
+  height: 16.625rem;
   color: #fff;
   background-color: #080705; }
   .footer p {
     margin-bottom: 0; }
+  .footer p.text-center {
+    margin-top: 1rem;
+  }
+  .footer .middle-logo-container {
+    padding-top:20px;
+  }
   @media screen and (min-width: 40em) and (max-width: 63.9375em) {
     .footer .middle-logo-container {
       padding-top: 20px; } }
@@ -3024,6 +3029,33 @@ div.info-slots + div.info-slots::after {
   @media screen and (max-width: 39.9375em) {
     .footer {
       padding-top: 1.875rem; } }
+  .footer div.newsletter {
+    text-align:center;
+    border-radius: 0;
+    display:flex;
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:10px;
+  }
+  .footer span.newsletter-heading {
+    padding-top: 10px;
+    display: block;
+    text-align: center;
+  }
+  .footer div.newsletter input {
+    padding:5px 10px;
+    width:70%;
+  }
+  .footer div.newsletter input[type="submit"] {
+    padding:5px 10px;
+    width:30%;
+    background-color:#fe1818;
+    border:0;
+  }
+  .footer h4 {
+    font-size: 1.325rem;
+  }
 
 .pdf-download {
   vertical-align: middle; }
@@ -3282,4 +3314,8 @@ div.info-slots + div.info-slots::after {
 
 .call-for-speakers-heading {
     color: #fecb58;
+}
+
+.vertical-align-bottom {
+  margin-top:80%;
 }
