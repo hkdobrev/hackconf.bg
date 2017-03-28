@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'', include(wagtail_urls)),
 
-    
+
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 

@@ -13,6 +13,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+# from wagtail_modeltranslation.models import TranslationMixin
 
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 

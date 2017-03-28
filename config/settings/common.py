@@ -45,6 +45,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
+    'wagtail_modeltranslation',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
@@ -67,6 +68,17 @@ LOCAL_APPS = (
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'bg'
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('bg', 'Bulgarian'),
+)
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'hackconf.website.translation',
+)
+
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
@@ -77,6 +89,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
@@ -257,3 +270,5 @@ ADMIN_URL = r'^admin/'
 # Your common stuff: Below this line define 3rd party library settings
 
 WAGTAIL_SITE_NAME = ''
+
+MODELTRANSLATION_DEBUG = True
