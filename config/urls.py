@@ -17,13 +17,8 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^django-admin/', include(admin.site.urls)),
-
     url(r'^documents/', include(wagtaildocs_urls)),
-
-
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
-
-    # User management
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

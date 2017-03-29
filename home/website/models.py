@@ -121,6 +121,8 @@ class HomePage(Page):
         FieldPanel('video_id'),
         FieldPanel('about_text'),
 
+        InlinePanel('navigation_items', label="Navigation items"),
+
         FieldPanel('show_call_for_speakers_section'),
         FieldPanel('call_for_speakers_title'),
         FieldPanel('call_for_speakers_form_url'),
@@ -412,12 +414,34 @@ class HostingPartners(Orderable, models.Model):
 
 
 @register_snippet
+class NavigationItem(Orderable, models.Model):
+    name = models.CharField(max_length=30, blank=True, null=True)
+    redirect_to = models.CharField(max_length=40, blank=True, null=True)
+
+    content_panels = [
+        FieldPanel('name'),
+        FieldPanel('redirect_to'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+class NavigationItems(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='navigation_items')
+    navigation_item = models.ForeignKey('website.NavigationItem', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('navigation_item'),
+    ]
+
+
+@register_snippet
 class Event(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     video_id = models.CharField(max_length=255, blank=True, null=True)
     description = RichTextField(blank=True, null=True)
 
-    panels = [
+    content_panels = [
         FieldPanel('name'),
         FieldPanel('video_id'),
         FieldPanel('description')

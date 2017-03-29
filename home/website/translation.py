@@ -1,4 +1,4 @@
-from .models import HomePage
+from .models import HomePage, Event, NavigationItem
 from modeltranslation.decorators import register
 from wagtail_modeltranslation.translator import WagtailTranslationOptions
 
@@ -20,3 +20,17 @@ class HomePageTranslationOptions(WagtailTranslationOptions):
             'slug', 'url_path', 'live')
 
     required_languages = ("bg", "en")
+
+
+@register(Event)
+class EventTranslationOptions(WagtailTranslationOptions):
+    fields = ('name', 'description')
+
+    required_languages = ("bg", "en")
+
+
+@register(NavigationItem)
+class NavigationItemTranslationOptions(WagtailTranslationOptions):
+    fields = ('name',)
+
+    required_languages = ('bg', 'en')
