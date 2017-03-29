@@ -64,16 +64,28 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    sweet_partner_title = models.CharField(max_length=50, null=True, blank=True)
     sweet_partner = models.ForeignKey('website.Partner',
                                       related_name='+',
                                       blank=True,
                                       null=True,
                                       on_delete=models.SET_NULL)
+    transport_partner_title = models.CharField(max_length=50, null=True, blank=True)
     transport_partner = models.ForeignKey('website.Partner',
                                       related_name='+',
                                       blank=True,
                                       null=True,
                                       on_delete=models.SET_NULL)
+
+    gold_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    silver_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    platinum_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    general_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    other_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    media_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    branch_partners_title = models.CharField(max_length=50, null=True, blank=True)
+
     # past events section
 
     # tickets section
@@ -129,12 +141,19 @@ class HomePage(Page):
         FieldPanel('fb_text'),
         FieldPanel('sponsors_partnership_description'),
         DocumentChooserPanel('sponsors_partnership_document'),
+        FieldPanel('general_partners_title'),
         InlinePanel('general_partners', label="General Partners"),
+        FieldPanel('platinum_partners_title'),
         InlinePanel('platinum_partners', label="Platinum Partners"),
+        FieldPanel('gold_partners_title'),
         InlinePanel('gold_partners', label="Gold Partners"),
+        FieldPanel('silver_partners_title'),
         InlinePanel('silver_partners', label="Silver Partners"),
+        FieldPanel('other_partners_title'),
         InlinePanel('other_partners', label="Other Partners"),
+        FieldPanel('media_partners_title'),
         InlinePanel('media_partners', label="Media Partners"),
+        FieldPanel('branch_partners_title'),
         InlinePanel('branch_partners', label="Branch Partners"),
         SnippetChooserPanel('sweet_partner'),
         SnippetChooserPanel('transport_partner'),
