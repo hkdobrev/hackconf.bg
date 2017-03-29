@@ -155,7 +155,10 @@ class HomePage(Page):
         InlinePanel('media_partners', label="Media Partners"),
         FieldPanel('branch_partners_title'),
         InlinePanel('branch_partners', label="Branch Partners"),
+        FieldPanel('sweet_partner_title'),
         SnippetChooserPanel('sweet_partner'),
+        FieldPanel('transport_partner_title'),
+
         SnippetChooserPanel('transport_partner'),
         InlinePanel('past_events', label="Past Events"),
         FieldPanel('tickets_title'),
