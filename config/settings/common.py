@@ -12,8 +12,8 @@ from __future__ import absolute_import, unicode_literals
 
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (hackconf/config/settings/common.py - 3 = hackconf/)
-APPS_DIR = ROOT_DIR.path('hackconf')
+ROOT_DIR = environ.Path(__file__) - 3  # (home/config/settings/common.py - 3 = hackconf/)
+APPS_DIR = ROOT_DIR.path('home')
 
 env = environ.Env()
 
@@ -45,6 +45,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
+     'wagtail_modeltranslation',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
@@ -59,8 +60,8 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     # custom users app
-    'hackconf.users.apps.UsersConfig',
-    'hackconf.website.apps.WebsiteConfig',
+    'home.users.apps.UsersConfig',
+    'home.website.apps.WebsiteConfig',
     # Your stuff: custom apps go here
 )
 
@@ -77,6 +78,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
@@ -85,7 +87,7 @@ MIDDLEWARE_CLASSES = (
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
 MIGRATION_MODULES = {
-    'sites': 'hackconf.contrib.sites.migrations'
+    'sites': 'home.contrib.sites.migrations'
 }
 
 # DEBUG
@@ -133,7 +135,9 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 TIME_ZONE = 'UTC'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'en-us'
+
+prefix_default_language=True
+LANGUAGE_CODE = 'en'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -141,12 +145,21 @@ SITE_ID = 1
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
+# # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
 USE_L10N = True
+#
+# # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
+# USE_TZ = True
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
-USE_TZ = True
 
+LANGUAGES = (
+    ('bg', 'Bulgarian'),
+    ('en', 'English'),
+)
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'home.website.translation',
+)
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#templates
@@ -178,6 +191,8 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
+                'django.template.context_processors.i18n',
+
             ],
         },
     },
@@ -233,8 +248,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
-ACCOUNT_ADAPTER = 'hackconf.users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = 'hackconf.users.adapters.SocialAccountAdapter'
+ACCOUNT_ADAPTER = 'home.users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'home.users.adapters.SocialAccountAdapter'
 
 # Custom user app defaults
 # Select the correct user model

@@ -151,6 +151,9 @@ class HomePage(Page):
         SnippetChooserPanel('footer_powered_by')
     ]
 
+    promote_panels = Page.promote_panels + [
+        FieldPanel('slug'),
+    ]
 
 @register_snippet
 class Lecture(models.Model):
