@@ -182,12 +182,12 @@ class HomePage(Page):
 @register_snippet
 class Lecture(models.Model):
     topic = models.CharField(max_length=255)
-    lector = models.CharField(max_length=255)
+    speaker = models.ForeignKey('website.Speaker', related_name='+', null=True, blank=True)
     start_time = models.DateTimeField()
 
     panels = [
         FieldPanel('topic'),
-        FieldPanel('lector'),
+        FieldPanel('speaker'),
         FieldPanel('start_time')
     ]
 

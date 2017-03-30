@@ -1,4 +1,4 @@
-from .models import HomePage, Event, NavigationItem, Speaker
+from .models import HomePage, Event, NavigationItem, Speaker, Lecture
 from modeltranslation.decorators import register
 from wagtail_modeltranslation.translator import WagtailTranslationOptions
 
@@ -39,5 +39,12 @@ class NavigationItemTranslationOptions(WagtailTranslationOptions):
 @register(Speaker)
 class SpeakerTranslationOptions(WagtailTranslationOptions):
     fields = ('name',)
+
+    required_languages = ('bg', 'en')
+
+
+@register(Lecture)
+class LectureTranslationOptions(WagtailTranslationOptions):
+    fields = ('topic',)
 
     required_languages = ('bg', 'en')
