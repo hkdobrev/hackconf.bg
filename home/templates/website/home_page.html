@@ -162,7 +162,7 @@
       <article class="container container-content">
         <div class="row">
           <div class="medium-12 medium-centered large-11 large-centered columns">
-            <h2 class="text-center">Програма</h2>
+            <h2 class="text-center">{{ page.schedule_title }}</h2>
             <div class="row program">
               <div class="small-12 large-4 columns">
                 <div class="table-program yellow">
@@ -282,7 +282,7 @@
       <article class="container container-content">
         <div class="row">
           <div class="medium-11 medium-centered large-11 large-centered columns">
-            <h2 class="text-center">Лектори</h2>
+            <h2 class="text-center">{{ page.speakers_title }}</h2>
             <div class="lecturers-wrapper">
               <div class="row">
                 {% for relation in page.speakers_info.all %}

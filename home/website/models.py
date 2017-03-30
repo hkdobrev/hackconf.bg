@@ -47,9 +47,11 @@ class HomePage(Page):
 
     # schedule section
     show_schedule = models.BooleanField(default=False)
+    schedule_title = models.CharField(max_length=50, blank=True, null=True)
 
     # speackers section
     show_speakers_section = models.BooleanField(default=False)
+    speakers_title = models.CharField(max_length=50, blank=True, null=True)
 
     # sponsors section
     sponsors_text = RichTextField(blank=True, null=True)
@@ -129,12 +131,14 @@ class HomePage(Page):
         FieldPanel('call_for_speakers_description'),
 
         FieldPanel('show_schedule'),
+        FieldPanel('schedule_title'),
         InlinePanel('schedule_day_one', label="Day One Lectures"),
         InlinePanel('schedule_day_two', label="Day Two Lectures"),
         InlinePanel('workshops_day_one', label="Day One Workshops"),
         InlinePanel('workshops_day_two', label="Day Two Workshops"),
 
         FieldPanel('show_speakers_section'),
+        FieldPanel('speakers_title'),
         InlinePanel('speakers_info', label="Speakers Info"),
 
         FieldPanel('sponsors_text'),
@@ -425,6 +429,7 @@ class NavigationItem(Orderable, models.Model):
 
     def __str__(self):
         return self.name
+
 
 class NavigationItems(Orderable, models.Model):
     page = ParentalKey('website.HomePage', related_name='navigation_items')

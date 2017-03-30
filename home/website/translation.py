@@ -17,7 +17,8 @@ class HomePageTranslationOptions(WagtailTranslationOptions):
             #location section
             'location_title', 'location_place',
             #fields from Page model
-            'slug', 'url_path', 'live')
+            'slug', 'url_path', 'live',
+            'speakers_title', 'schedule_title')
 
     required_languages = ("bg", "en")
 
