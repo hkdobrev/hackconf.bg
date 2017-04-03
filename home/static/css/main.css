@@ -3319,3 +3319,34 @@ div.info-slots + div.info-slots::after {
 .vertical-align-bottom {
   margin-top:80%;
 }
+
+.language-bar {
+  color: #fff;
+  display:inline-block;
+  position: absolute;
+  right:100px;
+  top:20px;
+  text-align: center;
+}
+
+.language-bar div {
+  display:inline-block;
+  cursor:pointer;
+  border-right: 1px solid white;
+  padding:5px 10px;
+}
+
+.language-bar div:hover {
+  color: #fecb58;
+}
+
+.language-bar div:last-child {
+  border:0;
+}
+
+@media screen and (max-width: 425px) {
+  .language-bar {
+    width:100%;
+    right:0;
+  }
+}
