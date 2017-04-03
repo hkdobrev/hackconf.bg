@@ -1,4 +1,4 @@
-{% load staticfiles i18n wagtailimages_tags wagtailcore_tags %}
+{% load staticfiles i18n wagtailimages_tags wagtailcore_tags wagtail_modeltranslation %}
 <!doctype html>
 <html>
   <head lang="bg">
@@ -11,7 +11,7 @@
     <meta property="og:image" content="http://hackconf.bg/static/images/hackconf2016.jpg"/>
     <meta property="og:url" content="http://hackconf.bg/"/>
     <meta property="og:title" content="HackConf 2016"/>
-    <meta property="og:description" content='HackConf е ежегодна технологична и мотивационна конференция, състояща се в София, България. HackConf 2016 ще надгради започнатото през миналата година, темата ще бъде "Как да станем по-добри програмисти и IT специалисти?". HackConf2016 е безплатна и отворена за хора от цялата страна...'/>
+    <meta property="og:description" content='HackConf is one of the largest motivational tech conferences in Bulgaria. The conference is organized for a third consecutive year'/>
     <meta property="fb:app_id" content="1649318995353166" />
 
 
@@ -48,6 +48,10 @@
     </script>
   </head>
   <body>
+    <div class="language-bar">
+      <div ref="bg">BG</div>
+      <div ref="en">EN</div>
+    </div>
     <section class="section section-header">
       <article class="container">
         <div class="row">
@@ -100,21 +104,9 @@
         <div data-sticky-container>
           <div class="top-bar" id="main-menu" data-sticky data-options="marginTop:0;" data-top-anchor="about" style="width:100%" data-sticky-on="large">
             <ul class="dropdown menu menu-main" data-dropdown-menu>
-              <li><a href="#about">за конференцията</a></li>
-              {% if page.show_call_for_speakers_section %}
-              <li><a href="#call-for-speakers">call for speakers</a></li>
-              {% endif %}
-              {% if page.show_schedule %}
-              <li><a href="#program">програма</a></li>
-              {% endif %}
-              {% if page.show_speakers_section %}
-              <li><a href="#lecturers">лектори</a></li>
-              {% endif %}
-              <li><a href="#sponsors">спонсори</a></li>
-              <li><a href="https://www.youtube.com/user/HackBulgaria">лекции</a></li>
-              <li><a href="#past">минали събития</a></li>
-              <li><a href="#tickets">билети</a></li>
-              <li><a href="#location">локация</a></li>
+              {% for relation in page.navigation_items.all %}
+              <li><a href="{{ relation.navigation_item.redirect_to }}">{{ relation.navigation_item.name }}</a></li>
+              {% endfor %}
             </ul>
           </div>
           <div data-sticky data-options="marginTop:0;" data-top-anchor="about" style="width:100%" data-sticky-on="large" class="sticky-button">
@@ -172,7 +164,7 @@
       <article class="container container-content">
         <div class="row">
           <div class="medium-12 medium-centered large-11 large-centered columns">
-            <h2 class="text-center">Програма</h2>
+            <h2 class="text-center">{{ page.schedule_title }}</h2>
             <div class="row program">
               <div class="small-12 large-4 columns">
                 <div class="table-program yellow">
@@ -191,7 +183,7 @@
                     <div class="row">
                       <div class="medium-9 columns">
                         <span class="event">{{relation.lecture.topic}}</span>
-                        <span class="name">{{relation.lecture.lector}}</span>
+                        <span class="name">{{relation.lecture.speaker.name}}</span>
                       </div>
                       <div class="medium-3 columns">
                         <span class="time">{{relation.lecture.start_time|time:"H:i"}}</span>
@@ -292,7 +284,7 @@
       <article class="container container-content">
         <div class="row">
           <div class="medium-11 medium-centered large-11 large-centered columns">
-            <h2 class="text-center">Лектори</h2>
+            <h2 class="text-center">{{ page.speakers_title }}</h2>
             <div class="lecturers-wrapper">
               <div class="row">
                 {% for relation in page.speakers_info.all %}
@@ -376,7 +368,7 @@
             {{page.sponsors_partnership_description|richtext}}
             <a href="{{page.sponsors_partnership_document.file.url}}" target="_blank"><i class="icon icon-pdf pdf-download"></i></a>
             </div>
-            <h4 class="sponsors-headline">Генерални партньори</h4>
+            <h4 class="sponsors-headline">{{ page.general_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
             {% for relation in page.general_partners.all %}
               <div class="column tcell">
@@ -392,7 +384,7 @@
         {% if page.platinum_partners.all %}
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Платинени спонсори</h4>
+            <h4 class="sp-t-50">{{ page.platinum_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.platinum_partners.all %}
               <div class="column tcell">
@@ -411,7 +403,7 @@
         {% if page.gold_partners.all %}
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Златни спонсори</h4>
+            <h4 class="sp-t-50">{{ page.gold_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.gold_partners.all %}
               <div class="column tcell">
@@ -430,7 +422,7 @@
         {% if page.silver_partners.all %}
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Сребърни спонсори</h4>
+            <h4 class="sp-t-50">{{ page.silver_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.silver_partners.all %}
               <div class="column tcell">
@@ -449,7 +441,7 @@
         {% if page.other_partners.all %}
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">С подкрепата на:</h4>
+            <h4 class="sp-t-50">{{ page.other_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.other_partners.all %}
               <div class="column tcell">
@@ -468,7 +460,7 @@
 
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Медийни партньори</h4>
+            <h4 class="sp-t-50">{{ page.media_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.media_partners.all %}
               <div class="column tcell">
@@ -485,7 +477,7 @@
         </div>
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Браншови партньори</h4>
+            <h4 class="sp-t-50">{{ page.branch_partners_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.branch_partners.all %}
               <div class="column tcell">
@@ -501,7 +493,7 @@
         {% if page.sweet_partner %}
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Сладък партньор</h4>
+            <h4 class="sp-t-50">{{ page.sweet_partner_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               <div class="column tcell">
                 <a href="{{page.sweet_partner.website_url}}" target="_blank">
@@ -516,7 +508,7 @@
         {% if page.transport_partner %}
         <div class="row">
           <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">Транспортен партньор</h4>
+            <h4 class="sp-t-50">{{ page.transport_partner_title }}</h4>
             <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               <div class="column tcell">
                 <a href="{{page.transport_partner.website_url}}" target="_blank">
@@ -650,4 +642,3 @@
     <script type="text/javascript" src="/static/js/project.js"></script>
   </body>
 </html>
-

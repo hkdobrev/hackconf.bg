@@ -36,3 +36,14 @@ $(window).scroll(function (e) {
   }
 
 });
+
+$(".language-bar div").click(function(){
+  var lang = $(this).attr("ref");
+  var url = window.location.pathname.split(window.location.hostname);
+
+  // remove the previous lang
+  url.shift();
+
+  var path = location.origin + "/" + lang + "/" + url.join("/");
+  location.href = path;
+});

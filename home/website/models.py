@@ -47,9 +47,11 @@ class HomePage(Page):
 
     # schedule section
     show_schedule = models.BooleanField(default=False)
+    schedule_title = models.CharField(max_length=50, blank=True, null=True)
 
     # speackers section
     show_speakers_section = models.BooleanField(default=False)
+    speakers_title = models.CharField(max_length=50, blank=True, null=True)
 
     # sponsors section
     sponsors_text = RichTextField(blank=True, null=True)
@@ -64,16 +66,28 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    sweet_partner_title = models.CharField(max_length=50, null=True, blank=True)
     sweet_partner = models.ForeignKey('website.Partner',
                                       related_name='+',
                                       blank=True,
                                       null=True,
                                       on_delete=models.SET_NULL)
+    transport_partner_title = models.CharField(max_length=50, null=True, blank=True)
     transport_partner = models.ForeignKey('website.Partner',
                                       related_name='+',
                                       blank=True,
                                       null=True,
                                       on_delete=models.SET_NULL)
+
+    gold_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    silver_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    platinum_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    general_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    other_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    media_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    branch_partners_title = models.CharField(max_length=50, null=True, blank=True)
+
     # past events section
 
     # tickets section
@@ -109,18 +123,22 @@ class HomePage(Page):
         FieldPanel('video_id'),
         FieldPanel('about_text'),
 
+        InlinePanel('navigation_items', label="Navigation items"),
+
         FieldPanel('show_call_for_speakers_section'),
         FieldPanel('call_for_speakers_title'),
         FieldPanel('call_for_speakers_form_url'),
         FieldPanel('call_for_speakers_description'),
 
         FieldPanel('show_schedule'),
+        FieldPanel('schedule_title'),
         InlinePanel('schedule_day_one', label="Day One Lectures"),
         InlinePanel('schedule_day_two', label="Day Two Lectures"),
         InlinePanel('workshops_day_one', label="Day One Workshops"),
         InlinePanel('workshops_day_two', label="Day Two Workshops"),
 
         FieldPanel('show_speakers_section'),
+        FieldPanel('speakers_title'),
         InlinePanel('speakers_info', label="Speakers Info"),
 
         FieldPanel('sponsors_text'),
@@ -129,14 +147,24 @@ class HomePage(Page):
         FieldPanel('fb_text'),
         FieldPanel('sponsors_partnership_description'),
         DocumentChooserPanel('sponsors_partnership_document'),
+        FieldPanel('general_partners_title'),
         InlinePanel('general_partners', label="General Partners"),
+        FieldPanel('platinum_partners_title'),
         InlinePanel('platinum_partners', label="Platinum Partners"),
+        FieldPanel('gold_partners_title'),
         InlinePanel('gold_partners', label="Gold Partners"),
+        FieldPanel('silver_partners_title'),
         InlinePanel('silver_partners', label="Silver Partners"),
+        FieldPanel('other_partners_title'),
         InlinePanel('other_partners', label="Other Partners"),
+        FieldPanel('media_partners_title'),
         InlinePanel('media_partners', label="Media Partners"),
+        FieldPanel('branch_partners_title'),
         InlinePanel('branch_partners', label="Branch Partners"),
+        FieldPanel('sweet_partner_title'),
         SnippetChooserPanel('sweet_partner'),
+        FieldPanel('transport_partner_title'),
+
         SnippetChooserPanel('transport_partner'),
         InlinePanel('past_events', label="Past Events"),
         FieldPanel('tickets_title'),
@@ -151,16 +179,19 @@ class HomePage(Page):
         SnippetChooserPanel('footer_powered_by')
     ]
 
+    promote_panels = Page.promote_panels + [
+        FieldPanel('slug'),
+    ]
 
 @register_snippet
 class Lecture(models.Model):
     topic = models.CharField(max_length=255)
-    lector = models.CharField(max_length=255)
+    speaker = models.ForeignKey('website.Speaker', related_name='+', null=True, blank=True)
     start_time = models.DateTimeField()
 
     panels = [
         FieldPanel('topic'),
-        FieldPanel('lector'),
+        FieldPanel('speaker'),
         FieldPanel('start_time')
     ]
 
@@ -387,12 +418,35 @@ class HostingPartners(Orderable, models.Model):
 
 
 @register_snippet
+class NavigationItem(Orderable, models.Model):
+    name = models.CharField(max_length=30, blank=True, null=True)
+    redirect_to = models.CharField(max_length=40, blank=True, null=True)
+
+    content_panels = [
+        FieldPanel('name'),
+        FieldPanel('redirect_to'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+
+class NavigationItems(Orderable, models.Model):
+    page = ParentalKey('website.HomePage', related_name='navigation_items')
+    navigation_item = models.ForeignKey('website.NavigationItem', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('navigation_item'),
+    ]
+
+
+@register_snippet
 class Event(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     video_id = models.CharField(max_length=255, blank=True, null=True)
     description = RichTextField(blank=True, null=True)
 
-    panels = [
+    content_panels = [
         FieldPanel('name'),
         FieldPanel('video_id'),
         FieldPanel('description')
