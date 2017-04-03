@@ -490,36 +490,6 @@
             </div>
           </div>
         </div>
-        {% if page.sweet_partner %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.sweet_partner_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              <div class="column tcell">
-                <a href="{{page.sweet_partner.website_url}}" target="_blank">
-                  {% image page.sweet_partner.logo max-240x120 as partner_logo %}
-                  <img src="{{partner_logo.url}}" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        {% if page.transport_partner %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.transport_partner_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              <div class="column tcell">
-                <a href="{{page.transport_partner.website_url}}" target="_blank">
-                  {% image page.transport_partner.logo max-240x120 as partner_logo %}
-                  <img src="{{partner_logo.url}}" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endif %}
       </article>
     </section>
     <section id="past" class="section section-gray-bg secondary">

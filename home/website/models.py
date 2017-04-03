@@ -67,19 +67,6 @@ class HomePage(Page):
         related_name='+'
     )
 
-    sweet_partner_title = models.CharField(max_length=50, null=True, blank=True)
-    sweet_partner = models.ForeignKey('website.Partner',
-                                      related_name='+',
-                                      blank=True,
-                                      null=True,
-                                      on_delete=models.SET_NULL)
-    transport_partner_title = models.CharField(max_length=50, null=True, blank=True)
-    transport_partner = models.ForeignKey('website.Partner',
-                                      related_name='+',
-                                      blank=True,
-                                      null=True,
-                                      on_delete=models.SET_NULL)
-
     gold_partners_title = models.CharField(max_length=50, null=True, blank=True)
     silver_partners_title = models.CharField(max_length=50, null=True, blank=True)
     platinum_partners_title = models.CharField(max_length=50, null=True, blank=True)
@@ -161,11 +148,7 @@ class HomePage(Page):
         InlinePanel('media_partners', label="Media Partners"),
         FieldPanel('branch_partners_title'),
         InlinePanel('branch_partners', label="Branch Partners"),
-        FieldPanel('sweet_partner_title'),
-        SnippetChooserPanel('sweet_partner'),
-        FieldPanel('transport_partner_title'),
 
-        SnippetChooserPanel('transport_partner'),
         InlinePanel('past_events', label="Past Events"),
         FieldPanel('tickets_title'),
         FieldPanel('tickets_description'),
