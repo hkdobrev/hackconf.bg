@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.7.2'
 
 set :application, 'hackconf'
 set :repo_url, 'git@github.com:HackSoftware/hackconf-wagtail.git'
