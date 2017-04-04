@@ -3042,6 +3042,8 @@ div.info-slots + div.info-slots::after {
     padding-top: 10px;
     display: block;
     text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
   }
   .footer div.newsletter input {
     padding:5px 10px;
@@ -3349,4 +3351,54 @@ div.info-slots + div.info-slots::after {
     width:100%;
     right:0;
   }
+}
+
+.past-events {
+  position:relative;
+  width:100%;
+  overflow: hidden
+}
+
+.past-events .row {
+  position:relative;
+  margin-left:-600px;
+  left:50%;
+}
+
+.past-events-buttons div::before {
+  font-family: 'hackconf';
+  font-size: 1.5em;
+  color: #c3c3c3;
+  width:40px;
+  height:40px;
+  box-sizing: border-box;
+  position: absolute;
+  line-height: 1;
+  text-align: center;
+  top:50%;
+  padding:8px;
+  margin-top:-30px;
+  cursor:pointer;
+  opacity:0.55;
+  transition: all 0.5s ease;
+  z-index:9000;
+  content: "\e900";
+  display:block;
+  background-color: #000;
+}
+
+.past-events-buttons div:hover::before {
+  background-color: #fecb58;
+  color: #fff;
+  opacity: 1;
+}
+
+.past-events-buttons .move-left::before {
+  left:20px;
+  transform:rotate(-90deg);
+}
+
+.past-events-buttons .move-right::before {
+  right:20px;
+  transform:rotate(90deg);
 }

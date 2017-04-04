@@ -492,8 +492,12 @@
         </div>
       </article>
     </section>
-    <section id="past" class="section section-gray-bg secondary">
+    <section id="past" class="section section-gray-bg secondary past-events">
       <article class="container">
+        <div class="past-events-buttons">
+          <div class="move-left"></div>
+          <div class="move-right"></div>
+        </div>
         {% for relation in page.past_events.all %}
         <div class="row">
           <div class="medium-12 medium-centered columns">
@@ -579,10 +583,10 @@
           </div>
           <div class="small-6 large-6 small-order-3 medium-order-3 large-order-2 columns middle-logo-container">
             <p>
-              <h4 class="text-center">
+              <h5 class="text-center">
                 <span class="newsletter-heading">Stay tuned!</span>
                 <span class="newsletter-heading">Receive regular updates about our line up, agenda and more</span>
-              </h4>
+              </h5>
               <div class="newsletter">
                 <input type="email" class="newsletter" />
                 <input type="submit" value="SIGN UP" />

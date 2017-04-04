@@ -1,16 +1,17 @@
 $(document).ready(function () {
-  $('.about').attr('id', 'about');
-  $('.call-for-speakers').attr('id', 'call-for-speakers');
-  $('.program').attr('id', 'program');
-  $('.lecturers').attr('id', 'lecturers');
-  $('.sponsors').attr('id', 'sponsors');
-  $('.past').attr('id', 'past');
-  $('.tickets').attr('id', 'tickets');
-  $('.section-header').attr('id', 'go-top');
-
   if ($(document).scrollTop() == 0) {
     $('.go-top').fadeOut(200);
   }
+
+
+  var allPastEvents = $(".past-events .row")
+  allPastEvents.each(function(k,v) {
+    $(v).css("left", ((k*100) + 50) + "%")
+  });
+  allPastEvents.first().addClass("selected");
+  $(".past-events-buttons .move-left").hide();
+  if(allPastEvents.length < 2)
+    $(".past-events-buttons .move-right").hide();
 });
 
 $('.go-top').click(function () {
@@ -46,4 +47,40 @@ $(".language-bar div").click(function(){
 
   var path = location.origin + "/" + lang + "/" + url.join("/");
   location.href = path;
+});
+
+var pastEventsLeftArrow = $(".past-events-buttons .move-right");
+var pastEventsRightArrow = $(".past-events-buttons .move-left");
+var allPastEvents = $(".past-events .row");
+
+pastEventsLeftArrow.click(function() {
+  if(allPastEvents.last().hasClass("selected")) return;
+  
+  var current = $(".past-events .row.selected");
+  var next = current.next();
+  
+  next.addClass("selected");
+  current.removeClass("selected");
+  allPastEvents.animate({"left": "-=100%"},400);
+
+  pastEventsRightArrow.show();
+  if(allPastEvents.last().hasClass("selected")) {
+    $(this).hide();
+  }
+});
+
+pastEventsRightArrow.click(function() {
+  if(allPastEvents.first().hasClass("selected")) return;
+  
+  var current = $(".past-events .row.selected");
+  var prev = current.prev();
+  
+  prev.addClass("selected");
+  current.removeClass("selected");
+  allPastEvents.animate({"left": "+=100%"},400);
+
+  pastEventsLeftArrow.show();
+  if(allPastEvents.first().hasClass("selected")){
+    $(this).hide();
+  }
 });
