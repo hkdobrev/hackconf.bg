@@ -2898,6 +2898,11 @@ kbd {
   @media screen and (max-width: 39.9375em) {
     #map {
       height: 25rem; } }
+  @media screen and (max-width: 1024px) and (min-width:768px) {
+    #map {
+      position: absolute !important;
+    }
+  }
 
 .map-placeholder {
   position: relative;
@@ -2989,7 +2994,7 @@ div.info-slots + div.info-slots::after {
       padding-bottom: 3.125rem; } }
 
 .footer {
-  height: 16.625rem;
+  /*height: 16.625rem;*/
   color: #fff;
   background-color: #080705; }
   .footer p {
@@ -3024,7 +3029,7 @@ div.info-slots + div.info-slots::after {
           display: block; } }
   @media screen and (min-width: 40em) and (max-width: 63.9375em) {
     .footer {
-      height: 11.875rem;
+      /*height: 11.875rem;*/
       padding-top: 3.125rem; } }
   @media screen and (max-width: 39.9375em) {
     .footer {
@@ -3037,6 +3042,11 @@ div.info-slots + div.info-slots::after {
     margin-left:auto;
     margin-right:auto;
     padding-top:10px;
+  }
+  @media screen and (max-width: 425px) {
+    .footer div.newsletter {
+      width:auto;
+    }
   }
   .footer span.newsletter-heading {
     padding-top: 10px;
@@ -3401,4 +3411,17 @@ div.info-slots + div.info-slots::after {
 .past-events-buttons .move-right::before {
   right:20px;
   transform:rotate(90deg);
+}
+
+@media screen and (max-width: 768px) {
+  .past-events .row {
+    position: static;
+    margin-left:auto;
+  }
+  .past-events-buttons {
+    display:none;
+  }
+  .footer .text-right {
+    margin:0;
+  }
 }
