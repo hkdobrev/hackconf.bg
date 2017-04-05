@@ -59,7 +59,7 @@ class HomePage(Page):
     streaming_text = RichTextField(blank=True, null=True)
     fb_text = RichTextField(blank=True, null=True)
     sponsors_partnership_description = RichTextField(blank=True, null=True)
-    sponsors_partnership_document = footer_powered_by = models.ForeignKey(
+    sponsors_partnership_document = models.ForeignKey(
         'wagtaildocs.Document',
         null=True,
         blank=True,
@@ -96,6 +96,20 @@ class HomePage(Page):
     )
     footer_powered_by = models.ForeignKey(
         'website.Partner',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    footer_code_of_conduct_document = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    footer_press_document = models.ForeignKey(
+        'wagtaildocs.Document',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -159,7 +173,9 @@ class HomePage(Page):
         FieldPanel('location_time'),
         SnippetChooserPanel('footer_organized_by'),
         InlinePanel('hosting_partners', label="Hosting Partners"),
-        SnippetChooserPanel('footer_powered_by')
+        SnippetChooserPanel('footer_powered_by'),
+        DocumentChooserPanel('footer_code_of_conduct_document'),
+        DocumentChooserPanel('footer_press_document'),
     ]
 
     promote_panels = Page.promote_panels + [
