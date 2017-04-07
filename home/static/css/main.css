@@ -2999,11 +2999,14 @@ div.info-slots + div.info-slots::after {
   background-color: #080705; }
   .footer p {
     margin-bottom: 0; }
-  .footer p.text-center {
-    margin-top: 1rem;
-  }
   .footer .middle-logo-container {
     padding-top:20px;
+  }
+  .footer .left-row {
+    padding: 35px 0;
+  }
+  .footer .right-row p {
+    margin-top: 1.2em;
   }
   @media screen and (min-width: 40em) and (max-width: 63.9375em) {
     .footer .middle-logo-container {
@@ -3062,8 +3065,9 @@ div.info-slots + div.info-slots::after {
   .footer div.newsletter input[type="submit"] {
     padding:5px 10px;
     width:30%;
-    background-color:#fe1818;
+    background-color:#f7931e;
     border:0;
+    color: #2b2b2b;
   }
   .footer h4 {
     font-size: 1.325rem;
@@ -3329,7 +3333,7 @@ div.info-slots + div.info-slots::after {
 }
 
 .vertical-align-bottom {
-  margin-top:80%;
+  margin-top:8%;
 }
 
 .language-bar {
@@ -3424,4 +3428,9 @@ div.info-slots + div.info-slots::after {
   .footer .text-right {
     margin:0;
   }
+}
+
+.hosting-partners-footer img {
+  width:60%;
+  margin-top:5%;
 }

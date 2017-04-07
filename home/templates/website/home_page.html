@@ -363,134 +363,134 @@
           </div>
         </div>
         {% if page.show_sponsors_section %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <div>
-            {{page.sponsors_partnership_description|richtext}}
-            <a href="{{page.sponsors_partnership_document.file.url}}" target="_blank"><i class="icon icon-pdf pdf-download"></i></a>
-            </div>
-            <h4 class="sponsors-headline">{{ page.general_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-            {% for relation in page.general_partners.all %}
-              <div class="column tcell">
-                <a href="{{relation.partner.website_url}}" target="_blank">
-                  {% image relation.partner.logo max-240x120 as partner_logo %}
-                  <img src="{{partner_logo.url}}" alt="">
-                </a>
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <div>
+              {{page.sponsors_partnership_description|richtext}}
+              <a href="{{page.sponsors_partnership_document.file.url}}" target="_blank"><i class="icon icon-pdf pdf-download"></i></a>
               </div>
-            {% endfor %}
-            </div>
-          </div>
-        </div>
-        {% if page.platinum_partners.all %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.platinum_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              {% for relation in page.platinum_partners.all %}
-              <div class="column tcell">
-                <div class="p-info">
+              <h4 class="sponsors-headline">{{ page.general_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+              {% for relation in page.general_partners.all %}
+                <div class="column tcell">
                   <a href="{{relation.partner.website_url}}" target="_blank">
                     {% image relation.partner.logo max-240x120 as partner_logo %}
                     <img src="{{partner_logo.url}}" alt="">
                   </a>
                 </div>
+              {% endfor %}
               </div>
-            {% endfor %}
             </div>
           </div>
-        </div>
-        {% endif %}
-        {% if page.gold_partners.all %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.gold_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              {% for relation in page.gold_partners.all %}
-              <div class="column tcell">
-                <div class="p-info">
-                  <a href="{{relation.partner.website_url}}" target="_blank">
-                    {% image relation.partner.logo max-240x120 as partner_logo %}
-                    <img src="{{partner_logo.url}}" alt="">
-                  </a>
+          {% if page.platinum_partners.all %}
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <h4 class="sp-t-50">{{ page.platinum_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+                {% for relation in page.platinum_partners.all %}
+                <div class="column tcell">
+                  <div class="p-info">
+                    <a href="{{relation.partner.website_url}}" target="_blank">
+                      {% image relation.partner.logo max-240x120 as partner_logo %}
+                      <img src="{{partner_logo.url}}" alt="">
+                    </a>
+                  </div>
                 </div>
+              {% endfor %}
               </div>
-            {% endfor %}
             </div>
           </div>
-        </div>
-        {% endif %}
-        {% if page.silver_partners.all %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.silver_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              {% for relation in page.silver_partners.all %}
-              <div class="column tcell">
-                <div class="p-info">
-                  <a href="{{relation.partner.website_url}}" target="_blank">
-                    {% image relation.partner.logo max-240x120 as partner_logo %}
-                    <img src="{{partner_logo.url}}" alt="">
-                  </a>
+          {% endif %}
+          {% if page.gold_partners.all %}
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <h4 class="sp-t-50">{{ page.gold_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+                {% for relation in page.gold_partners.all %}
+                <div class="column tcell">
+                  <div class="p-info">
+                    <a href="{{relation.partner.website_url}}" target="_blank">
+                      {% image relation.partner.logo max-240x120 as partner_logo %}
+                      <img src="{{partner_logo.url}}" alt="">
+                    </a>
+                  </div>
                 </div>
+              {% endfor %}
               </div>
-            {% endfor %}
             </div>
           </div>
-        </div>
-        {% endif %}
-        {% if page.other_partners.all %}
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.other_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              {% for relation in page.other_partners.all %}
-              <div class="column tcell">
-                <div class="p-info">
-                  <a href="{{relation.partner.website_url}}" target="_blank">
-                    {% image relation.partner.logo max-240x120 as partner_logo %}
-                    <img src="{{partner_logo.url}}" alt="">
-                  </a>
+          {% endif %}
+          {% if page.silver_partners.all %}
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <h4 class="sp-t-50">{{ page.silver_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+                {% for relation in page.silver_partners.all %}
+                <div class="column tcell">
+                  <div class="p-info">
+                    <a href="{{relation.partner.website_url}}" target="_blank">
+                      {% image relation.partner.logo max-240x120 as partner_logo %}
+                      <img src="{{partner_logo.url}}" alt="">
+                    </a>
+                  </div>
                 </div>
+              {% endfor %}
               </div>
-            {% endfor %}
             </div>
           </div>
-        </div>
-        {% endif %}
+          {% endif %}
+          {% if page.other_partners.all %}
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <h4 class="sp-t-50">{{ page.other_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+                {% for relation in page.other_partners.all %}
+                <div class="column tcell">
+                  <div class="p-info">
+                    <a href="{{relation.partner.website_url}}" target="_blank">
+                      {% image relation.partner.logo max-240x120 as partner_logo %}
+                      <img src="{{partner_logo.url}}" alt="">
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
 
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.media_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              {% for relation in page.media_partners.all %}
-              <div class="column tcell">
-                <div class="p-info">
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <h4 class="sp-t-50">{{ page.media_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+                {% for relation in page.media_partners.all %}
+                <div class="column tcell">
+                  <div class="p-info">
+                    <a href="{{relation.partner.website_url}}" target="_blank">
+                      {% image relation.partner.logo max-240x120 as partner_logo %}
+                      <img src="{{partner_logo.url}}" alt="">
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-8 medium-centered columns menu-centered">
+              <h4 class="sp-t-50">{{ page.branch_partners_title }}</h4>
+              <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
+                {% for relation in page.branch_partners.all %}
+                <div class="column tcell">
                   <a href="{{relation.partner.website_url}}" target="_blank">
                     {% image relation.partner.logo max-240x120 as partner_logo %}
                     <img src="{{partner_logo.url}}" alt="">
                   </a>
                 </div>
+              {% endfor %}
               </div>
-            {% endfor %}
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="small-12 medium-8 medium-centered columns menu-centered">
-            <h4 class="sp-t-50">{{ page.branch_partners_title }}</h4>
-            <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
-              {% for relation in page.branch_partners.all %}
-              <div class="column tcell">
-                <a href="{{relation.partner.website_url}}" target="_blank">
-                  {% image relation.partner.logo max-240x120 as partner_logo %}
-                  <img src="{{partner_logo.url}}" alt="">
-                </a>
-              </div>
-            {% endfor %}
-            </div>
-          </div>
-        </div>
         {% endif %}
       </article>
     </section>
@@ -564,26 +564,22 @@
     <footer class="footer">
       <div class="container">
         <div class="row">
-          <div class="small-4 large-3 small-order-1 medium-order-1 large-order-1 columns">
+          <div class="small-6 large-3 medium-6 small-order-2 medium-order-2 large-order-1 columns left-row">
             <p class="text-center"><small>Organized by</small>
               <br>
               {% image page.footer_organized_by.logo max-240x120 as partner_logo %}
               <img src="{{partner_logo.url}}" class="logo-footer hb" alt="HackBulgaria logo">
-            </p>
-            <p class="text-center">
-              <small>hosted by</small><br>
-              {% for relation in page.hosting_partners.all %}
-              {% image relation.partner.logo max-240x120 as partner_logo %}
-              <img src="{{partner_logo.url}}" alt="">
-              {% endfor %}
             </p>
             <p class="text-center"><small>Powered by</small>
               <br>
               {% image page.footer_powered_by.logo max-240x120 as partner_logo %}
               <img src="{{partner_logo.url}}" class="logo-footer hs" alt="HackSoft logo">
             </p>
+            <p class="text-center">
+              © HackConf
+            </p>
           </div>
-          <div class="small-8 large-6 small-order-2 medium-order-2 large-order-2 columns middle-logo-container">
+          <div class="small-12 large-6 medium-12 small-order-1 medium-order-1 large-order-2 columns middle-logo-container">
             <p>
               <h5 class="text-center">
                 <span class="newsletter-heading">Stay tuned!</span>
@@ -595,9 +591,18 @@
               </div>
             </p>
           </div>
-          <div class="large-3 small-order-3 medium-order-3 large-order-3 columns">
-            <p class="text-right vertical-align-bottom">
-              © HackConf
+          <div class="small-6 large-3 medium-6 small-order-3 medium-order-3 large-order-3 columns right-row">
+            <p class="text-center hosting-partners-footer">
+              <small>hosted by</small><br>
+              {% for relation in page.hosting_partners.all %}
+              {% image relation.partner.logo max-240x120 as partner_logo %}
+              <img src="{{partner_logo.url}}" alt="">
+              {% endfor %}
+            </p>
+            <p class="text-center">
+              <a href="{{page.footer_code_of_conduct_document.file.url}}" target="_blank">Code of conduct</a>
+              |
+              <a href="{{page.footer_press_document.file.url}}" target="_blank">Press</a>
             </p>
           </div>
         </div>
