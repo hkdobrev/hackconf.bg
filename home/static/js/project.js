@@ -84,3 +84,9 @@ pastEventsRightArrow.click(function() {
     $(this).hide();
   }
 });
+
+$(".newsletter button[type='submit']").click(function(e) {
+  var email = $(".newsletter").find("input[type='email']").val().trim();
+  if(email == "") return;
+  window.open('https://my.sendinblue.com/users/subscribe/js_id/26ky4/id/5/email/'+email)
+});

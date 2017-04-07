@@ -3061,8 +3061,9 @@ div.info-slots + div.info-slots::after {
   .footer div.newsletter input {
     padding:5px 10px;
     width:70%;
+    color: #000;
   }
-  .footer div.newsletter input[type="submit"] {
+  .footer div.newsletter button[type="submit"] {
     padding:5px 10px;
     width:30%;
     background-color:#f7931e;

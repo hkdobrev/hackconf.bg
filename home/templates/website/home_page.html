@@ -362,13 +362,15 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="medium-centered columns menu-centered" >
+            {{page.sponsors_partnership_description|richtext}}
+            <a href="{{page.sponsors_partnership_document.file.url}}" target="_blank"><i class="icon icon-pdf pdf-download"></i></a>
+          </div>
+        </div>
         {% if page.show_sponsors_section %}
           <div class="row">
             <div class="small-12 medium-8 medium-centered columns menu-centered">
-              <div>
-              {{page.sponsors_partnership_description|richtext}}
-              <a href="{{page.sponsors_partnership_document.file.url}}" target="_blank"><i class="icon icon-pdf pdf-download"></i></a>
-              </div>
               <h4 class="sponsors-headline">{{ page.general_partners_title }}</h4>
               <div class="row small-up-2 medium-up-3 large-up-4 align-center wrapper-sponsors">
               {% for relation in page.general_partners.all %}
@@ -587,7 +589,7 @@
               </h5>
               <div class="newsletter">
                 <input type="email" class="newsletter" />
-                <input type="submit" value="SIGN UP" />
+                <button type="submit">SIGN UP</button>
               </div>
             </p>
           </div>
