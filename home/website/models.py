@@ -54,6 +54,7 @@ class HomePage(Page):
     speakers_title = models.CharField(max_length=50, blank=True, null=True)
 
     # sponsors section
+    show_sponsors_section = models.BooleanField(default=False)
     sponsors_text = RichTextField(blank=True, null=True)
     attendees_text = RichTextField(blank=True, null=True)
     streaming_text = RichTextField(blank=True, null=True)
@@ -148,6 +149,7 @@ class HomePage(Page):
         FieldPanel('fb_text'),
         FieldPanel('sponsors_partnership_description'),
         DocumentChooserPanel('sponsors_partnership_document'),
+        FieldPanel('show_sponsors_section'),
         FieldPanel('general_partners_title'),
         InlinePanel('general_partners', label="General Partners"),
         FieldPanel('platinum_partners_title'),
