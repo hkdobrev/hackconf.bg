@@ -142,17 +142,17 @@
         <div class="row">
           <div class="medium-9 medium-centered columns">
             <h3 class="title call-for-speakers-heading">{{ page.call_for_speakers_title }}</h3>
-            <div>
-              {% if page.call_for_speakers_form_url %}
-              <a class="button button-to-black" href="{{ page.call_for_speakers_form_url }}" target="_blank">Apply Now!</a>
-              {% endif %}
-            </div>
             <div class="row">
               <div class="small-10 medium-7 large-6 columns">
                 <div class="info text-overflow">
                   {{ page.call_for_speakers_description|richtext }}
                 </div>
               </div>
+            </div>
+            <div>
+              {% if page.call_for_speakers_form_url %}
+              <a class="button button-to-black" href="{{ page.call_for_speakers_form_url }}" target="_blank">Apply Now!</a>
+              {% endif %}
             </div>
           </div>
         </div>
