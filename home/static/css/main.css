@@ -3435,3 +3435,29 @@ div.info-slots + div.info-slots::after {
   width:60%;
   margin-top:5%;
 }
+
+
+@media screen and (max-width:768px) {
+  #tickets iframe {
+    width:100%;
+  }
+}
+
+
+@media screen and (max-width:425px) {
+  #tickets iframe {
+    height:620px;
+  }
+}
+
+@media screen and (max-width:375px) {
+  #tickets iframe {
+    height:680px;
+  }
+}
+
+@media screen and (max-width:320px) {
+  #tickets iframe {
+    height:810px;
+  }
+}
