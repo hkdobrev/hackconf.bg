@@ -68,10 +68,18 @@ class HomePage(Page):
         related_name='+'
     )
 
+    show_general_partners = models.BooleanField(default=True)
+    show_platinum_partners = models.BooleanField(default=True)
+    show_gold_partners = models.BooleanField(default=True)
+    show_silver_partners = models.BooleanField(default=True)
+    show_other_partners = models.BooleanField(default=True)
+    show_media_partners = models.BooleanField(default=True)
+    show_branch_partners = models.BooleanField(default=True)
+
+    general_partners_title = models.CharField(max_length=50, null=True, blank=True)
+    platinum_partners_title = models.CharField(max_length=50, null=True, blank=True)
     gold_partners_title = models.CharField(max_length=50, null=True, blank=True)
     silver_partners_title = models.CharField(max_length=50, null=True, blank=True)
-    platinum_partners_title = models.CharField(max_length=50, null=True, blank=True)
-    general_partners_title = models.CharField(max_length=50, null=True, blank=True)
     other_partners_title = models.CharField(max_length=50, null=True, blank=True)
     media_partners_title = models.CharField(max_length=50, null=True, blank=True)
     branch_partners_title = models.CharField(max_length=50, null=True, blank=True)
@@ -151,18 +159,25 @@ class HomePage(Page):
         DocumentChooserPanel('sponsors_partnership_document'),
         FieldPanel('show_sponsors_section'),
         FieldPanel('general_partners_title'),
+        FieldPanel('show_general_partners'),
         InlinePanel('general_partners', label="General Partners"),
         FieldPanel('platinum_partners_title'),
+        FieldPanel('show_platinum_partners'),
         InlinePanel('platinum_partners', label="Platinum Partners"),
         FieldPanel('gold_partners_title'),
+        FieldPanel('show_gold_partners'),
         InlinePanel('gold_partners', label="Gold Partners"),
         FieldPanel('silver_partners_title'),
+        FieldPanel('show_silver_partners'),
         InlinePanel('silver_partners', label="Silver Partners"),
         FieldPanel('other_partners_title'),
+        FieldPanel('show_other_partners'),
         InlinePanel('other_partners', label="Other Partners"),
         FieldPanel('media_partners_title'),
+        FieldPanel('show_media_partners'),
         InlinePanel('media_partners', label="Media Partners"),
         FieldPanel('branch_partners_title'),
+        FieldPanel('show_branch_partners'),
         InlinePanel('branch_partners', label="Branch Partners"),
 
         InlinePanel('past_events', label="Past Events"),
