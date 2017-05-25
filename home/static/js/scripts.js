@@ -7,7 +7,7 @@
   google.maps.event.addDomListener(window, 'load', init);
 
   var map;
-  var brooklyn = new google.maps.LatLng(42.6847251, 23.3189384);
+  var location = new google.maps.LatLng(42.6669183,23.3733712)
   var MY_MAPTYPE_ID = 'custom_style';
   function init() {
     var featureOpts = [{
@@ -25,7 +25,7 @@
       panControl: false,
       mapTypeControl: false,
       streetViewControl: false,
-      center: new google.maps.LatLng(42.6847251, 23.3189384),
+      center: location,
       mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
       },
@@ -33,7 +33,7 @@
     };
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     var image = '/static/images/pmarker.png';
-    var myLatLng = new google.maps.LatLng(42.6847251, 23.3189384);
+    var myLatLng = location;
     var beachMarker = new google.maps.Marker({
       position: myLatLng,
       map: map,
