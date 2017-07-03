@@ -2720,7 +2720,8 @@ kbd {
       padding: 1.25rem; } }
   .section-call-speakers .title {
     font-weight: 300;
-    padding-top: 8.75rem; }
+    padding-top: 20px;
+  }
     @media screen and (max-width: 39.9375em) {
       .section-call-speakers .title {
         padding-top: 3.75rem; } }
@@ -3460,4 +3461,12 @@ div.info-slots + div.info-slots::after {
   #tickets iframe {
     height:810px;
   }
+}
+
+.transparent-container {
+  display:inline-block;
+  margin-top:100px;
+  margin-bottom:100px;
+  padding:40px;
+  background-color:rgba(1,1,1,0.6);
 }

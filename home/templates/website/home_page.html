@@ -141,11 +141,13 @@
       <article class="container">
         <div class="row">
           <div class="medium-9 medium-centered columns">
-            <h3 class="title call-for-speakers-heading">{{ page.call_for_speakers_title }}</h3>
-            <div class="row">
-              <div class="small-10 medium-7 large-6 columns">
-                <div class="info text-overflow">
-                  {{ page.call_for_speakers_description|richtext }}
+            <div class="transparent-container">
+              <h3 class="title call-for-speakers-heading">{{ page.call_for_speakers_title }}</h3>
+              <div class="row">
+                <div class="small-10 columns">
+                  <div class="info text-overflow">
+                    {{ page.call_for_speakers_description|richtext }}
+                  </div>
                 </div>
               </div>
             </div>
