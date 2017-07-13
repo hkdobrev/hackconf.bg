@@ -3269,7 +3269,7 @@ div.info-slots + div.info-slots::after {
     font-size: 2.25rem; }
   .lecturer .abs-container-icon {
     position: absolute;
-    right: 8px;
+    right: 20px;
     bottom: 0;
     height: 2.375rem; }
 
@@ -3469,4 +3469,13 @@ div.info-slots + div.info-slots::after {
   margin-bottom:100px;
   padding:40px;
   background-color:rgba(1,1,1,0.6);
+}
+
+.lecturer-container {
+  display:flex;
+  position:relative;
+}
+
+.lecturer-container .lecturer .text-container {
+  position:static;
 }
