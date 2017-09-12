@@ -239,7 +239,11 @@
                   <div class="table-row">
                     <div class="row">
                       <div class="medium-9 columns">
+                        {% if relation.workshop.enroll_url %}
+                        <span class="event"><a href="{{relation.workshop.enroll_url}}">{{relation.workshop.topic}}</a></span>
+                        {% else %}
                         <span class="event">{{relation.workshop.topic}}</span>
+                        {% endif %}
                         <span class="name">{{relation.workshop.lector}}</span>
                       </div>
                       <div class="medium-3 columns">

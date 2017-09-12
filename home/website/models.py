@@ -220,11 +220,13 @@ class Workshop(models.Model):
     topic = models.CharField(max_length=255)
     lector = models.CharField(max_length=255)
     start_time = models.DateTimeField()
+    enroll_url = models.URLField(max_length=255, blank=True, null=True)
 
     panels = [
         FieldPanel('topic'),
         FieldPanel('lector'),
-        FieldPanel('start_time')
+        FieldPanel('start_time'),
+        FieldPanel('enroll_url')
     ]
 
     def __str__(self):
