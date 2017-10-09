@@ -87,6 +87,7 @@ class HomePage(Page):
     # past events section
 
     # tickets section
+    show_tickets = models.BooleanField(default=True)
     tickets_title = models.CharField(max_length=255, blank=True, null=True)
     tickets_description = RichTextField(blank=True, null=True)
     tickets_widget_code = models.TextField(blank=True, null=True)
@@ -181,6 +182,7 @@ class HomePage(Page):
         InlinePanel('branch_partners', label="Branch Partners"),
 
         InlinePanel('past_events', label="Past Events"),
+        FieldPanel('show_tickets'),
         FieldPanel('tickets_title'),
         FieldPanel('tickets_description'),
         FieldPanel('tickets_widget_code'),
