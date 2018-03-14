@@ -138,7 +138,8 @@
       </article>
     </section>
     {% if page.show_call_for_speakers_section %}
-    <section id="call-for-speakers" class="section section-call-speakers">
+    {% image page.call_for_speakers_image width-1900 as call_for_speakers_image %}
+    <section id="call-for-speakers" class="section section-call-speakers" style="background-image:url({{call_for_speakers_image.url}})">
       <article class="container">
         <div class="row">
           <div class="medium-9 medium-centered columns">

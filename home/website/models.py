@@ -44,6 +44,13 @@ class HomePage(Page):
         null=True)
     call_for_speakers_form_url = models.URLField(max_length=255, blank=True, null=True)
     call_for_speakers_description = RichTextField(blank=True, null=True)
+    call_for_speakers_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     # schedule section
     show_schedule = models.BooleanField(default=False)
@@ -140,6 +147,7 @@ class HomePage(Page):
         FieldPanel('call_for_speakers_title'),
         FieldPanel('call_for_speakers_form_url'),
         FieldPanel('call_for_speakers_description'),
+        ImageChooserPanel('call_for_speakers_image'),
 
         FieldPanel('show_schedule'),
         FieldPanel('schedule_title'),
