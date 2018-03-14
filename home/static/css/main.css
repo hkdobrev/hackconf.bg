@@ -4651,3 +4651,27 @@ div.info-slots + div.info-slots::after {
 .lecturer-container .lecturer .text-container {
   position: static;
 }
+
+#pre-register {
+  background-color: #f9c757;
+  color: #262626;
+  text-align: center;
+  padding: 6rem 0;
+}
+
+#pre-register .pre-register-button {
+  display: inline-block;
+  padding: 15px 40px;
+  font-size: 20px;
+  color: #f9c757;
+  background-color: #262626;
+  position: relative;
+  box-shadow: 5px 5px 0px 0px rgba(38, 38, 36, 0.7);
+  margin: 0 2px 2px 0;
+  transition: all 0.1s ease;
+}
+
+#pre-register .pre-register-button:hover {
+  margin: 2px 0 0 2px;
+  box-shadow: 3px 3px 0px 0px rgba(38, 38, 36, 0.7);
+}

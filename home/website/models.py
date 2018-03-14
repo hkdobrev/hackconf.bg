@@ -93,6 +93,10 @@ class HomePage(Page):
 
     # past events section
 
+    show_pre_register = models.BooleanField(default=False)
+    pre_register_text = RichTextField(blank=True, null=True)
+    pre_register_url = models.URLField(max_length=255, blank=True, null=True)
+
     # tickets section
     show_tickets = models.BooleanField(default=True)
     tickets_title = models.CharField(max_length=255, blank=True, null=True)
@@ -197,6 +201,10 @@ class HomePage(Page):
         InlinePanel('branch_partners', label="Branch Partners"),
 
         InlinePanel('past_events', label="Past Events"),
+
+        FieldPanel('show_pre_register'),
+        FieldPanel('pre_register_text'),
+        FieldPanel('pre_register_url'),
         FieldPanel('show_tickets'),
         FieldPanel('tickets_title'),
         FieldPanel('tickets_description'),
@@ -216,6 +224,7 @@ class HomePage(Page):
     promote_panels = Page.promote_panels + [
         FieldPanel('slug'),
     ]
+
 
 @register_snippet
 class Lecture(models.Model):

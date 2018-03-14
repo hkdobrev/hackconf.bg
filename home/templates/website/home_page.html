@@ -527,6 +527,22 @@
       </article>
     </section>
     {% endif %}
+    {% if page.show_pre_register %}
+    <section id="pre-register" class="section">
+      <article class="container">
+        <div class="row">
+          <div class="medium-12 small-12 medium-centered small-centered">
+            <div class="pre-register-text">
+              {{page.pre_register_text|richtext}}
+            </div>
+            <a href="{{page.pre_register_url}}" class="pre-register-button" target="_blank">
+              Pre-register NOW!
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+    {% endif %}
     <section id="location" class="section">
       <article class="container-map">
         <div class="row placeholder-wrapper">
