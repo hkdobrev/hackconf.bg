@@ -583,13 +583,6 @@
             </p>
           </div>
           <div class="small-6 large-3 medium-6 small-order-3 medium-order-3 large-order-3 columns right-row">
-            <p class="text-center hosting-partners-footer">
-              <small>hosted by</small><br>
-              {% for relation in page.hosting_partners.all %}
-              {% image relation.partner.logo max-240x120 as partner_logo %}
-              <img src="{{partner_logo.url}}" alt="">
-              {% endfor %}
-            </p>
             <p class="text-center">
               <a href="{{page.footer_code_of_conduct_document.file.url}}" target="_blank">Code of conduct</a>
               |
