@@ -95,7 +95,13 @@
                 <img src="{{header_logo.url}}">
               {% endif %}
               </div>
-              <h4 class="header-headline">{{page.header_text}}</h4>
+              {% if page.show_pre_register %}
+                <div class="pre-register-button">
+                  <a href="{{page.pre_register_url}}" target="_blank">PRE-REGISTER</a>
+                </div>
+              {% else %}
+                <h4 class="header-headline">{{page.header_text}}</h4>
+              {% endif %}
             </div>
           </div>
         </div>
