@@ -125,7 +125,14 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    footer_press_document = models.ForeignKey(
+    footer_terms_and_conditions_document = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    footer_privacy_policy_document = models.ForeignKey(
         'wagtaildocs.Document',
         null=True,
         blank=True,
@@ -202,7 +209,8 @@ class HomePage(Page):
         InlinePanel('hosting_partners', label="Hosting Partners"),
         SnippetChooserPanel('footer_powered_by'),
         DocumentChooserPanel('footer_code_of_conduct_document'),
-        DocumentChooserPanel('footer_press_document'),
+        DocumentChooserPanel('footer_terms_and_conditions_document'),
+        DocumentChooserPanel('footer_privacy_policy_document'),
     ]
 
     promote_panels = Page.promote_panels + [

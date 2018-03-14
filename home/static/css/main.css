@@ -4072,9 +4072,24 @@ div.info-slots + div.info-slots::after {
 }
 .footer .middle-logo-container {
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 .footer .left-row {
   padding: 35px 0;
+}
+@media screen and (min-width: 74.9375em) {
+  .footer .left-row {
+    padding: 35px 0 0 35px;
+  }
+}
+.footer .right-row {
+  padding: 35px 0;
+  text-align: center;
+}
+@media screen and (min-width: 74.9375em) {
+  .footer .right-row {
+    padding: 35px 65px 0 0;
+  }
 }
 .footer .right-row p {
   margin-top: 1.2em;
